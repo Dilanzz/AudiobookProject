@@ -25,4 +25,16 @@ public class Library {
             }
         }
     }
+
+    public int getNumberOfAudiobooks() {
+        return collection.size();
+    }
+
+    public int getNumberListening() {
+        int i = 0;
+
+        for (Audiobook item: collection) {
+            if
+        }
+    }
 }

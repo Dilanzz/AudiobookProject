@@ -50,6 +50,10 @@ public  class Audiobook {
         return bookID;
     }
 
+    public listeningStatus getStatus() {
+        return status;
+    }
+
     public void play() {
         this.status = listeningStatus.LISTENING;
     }
