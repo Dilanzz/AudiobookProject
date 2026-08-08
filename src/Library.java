@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Library {
 
@@ -19,9 +20,13 @@ public class Library {
     }
 
     public void removeAudiobook(String name) {
-        for (Audiobook item: collection) {
-            if (item.getTitle().equalsIgnoreCase("name")) {
-                collection.remove(item);
+        Iterator<Audiobook> iterator = collection.iterator();
+
+        while (iterator.hasNext()) {
+            Audiobook item = iterator.next();
+
+            if (item.getTitle().equalsIgnoreCase(name)) {
+                iterator.remove();
             }
         }
     }
@@ -34,7 +39,11 @@ public class Library {
         int i = 0;
 
         for (Audiobook item: collection) {
-            if
+            if (Audiobook.listeningStatus.LISTENING == item.getStatus()) {
+                i++;
+            }
         }
+
+        return i;
     }
 }
