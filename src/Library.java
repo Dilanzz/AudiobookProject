@@ -37,10 +37,11 @@ public class Library {
             }
 
             boolean removed = false;
+            boolean notInt = false;
+            Scanner scanner = new Scanner(System.in);
             do {
-                Scanner scanner = new Scanner(System.in);
 
-                if (scanner.hasNext()) {
+                if (scanner.hasNextInt()) {
                     int input = scanner.nextInt();
                     for (Audiobook item : listOfMatchingNames) {
                         if (item.getID() == input) {
@@ -49,11 +50,19 @@ public class Library {
                             removed = true;
                         }
                     }
+                } else {
+                    notInt = true;
                 }
 
-                if (!removed) {
-                    System.out.println("Invalid ID or datatype, try again");
+
+                if (notInt) {
+                    System.out.println("Please enter an integer");
+                    notInt = false;
+                } else if (!removed) {
+                    System.out.println("Please enter one of the IDs listed");
                 }
+
+                scanner.next();
 
             } while (!removed);
         }
