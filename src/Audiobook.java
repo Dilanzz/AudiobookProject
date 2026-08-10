@@ -62,4 +62,9 @@ public  class Audiobook {
         this.status = listeningStatus.COMPLETED;
     }
 
+    public String getBookInfo() {
+        return "ID: " + getID() + " | Title: " + getTitle() + " | Author: "
+                + getAuthor() + " | Duration: " + getDuration();
+    }
+
 }

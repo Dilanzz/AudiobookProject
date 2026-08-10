@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class Library {
 
@@ -20,14 +21,42 @@ public class Library {
     }
 
     public void removeAudiobook(String name) {
-        Iterator<Audiobook> iterator = collection.iterator();
+        ArrayList<Audiobook> listOfMatchingNames = new ArrayList<>();
 
-        while (iterator.hasNext()) {
-            Audiobook item = iterator.next();
-
+        for (Audiobook item: collection) {
             if (item.getTitle().equalsIgnoreCase(name)) {
-                iterator.remove();
+                listOfMatchingNames.add(item);
             }
+        }
+
+        if (listOfMatchingNames.size() > 1) {
+            System.out.println("There is more than one item with the same title," +
+                    " which book do you want to remove? (Select by ID)");
+            for (Audiobook item: listOfMatchingNames) {
+                System.out.println(item.getBookInfo());
+            }
+
+            boolean removed = false;
+            do {
+                Scanner scanner = new Scanner(System.in);
+
+                int input = scanner.nextInt();
+
+                if (scanner.hasNextInt()) {
+                    for (Audiobook item : listOfMatchingNames) {
+                        if (item.getID() == input) {
+                            collection.remove(item);
+                            System.out.println("Removed the book " + item.getBookInfo());
+                            removed = true;
+                        }
+                    }
+                }
+
+                if (!removed) {
+                    System.out.println("Invalid ID or datatype, try again");
+                }
+
+            } while (!removed);
         }
     }
 
