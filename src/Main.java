@@ -25,5 +25,10 @@ public class Main {
         lib.removeAudiobook("The_Life");
 
         System.out.println("Number of audiobooks: " + lib.getNumberOfAudiobooks());
+
+        Audiobook bookFour = new Audiobook("The_Life", "Greg", 76.0,
+                Audiobook.genre.ROMANCE);
+
+        lib.removeAudiobook("Stars_and_sky");
     }
 }

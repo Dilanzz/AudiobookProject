@@ -112,6 +112,7 @@ public class Library {
 
                 if (item.getTitle().equalsIgnoreCase(name)) {
                     iterator.remove();
+                    System.out.println("Removed the book " + item.getBookInfo());
                 }
             }
         } else {
@@ -128,6 +129,28 @@ public class Library {
 
         for (Audiobook item: collection) {
             if (Audiobook.listeningStatus.LISTENING == item.getStatus()) {
+                i++;
+            }
+        }
+
+        return i;
+    }
+
+    public int getNumberCompleted() {
+        int i = 0;
+        for (Audiobook item: collection) {
+            if (item.getStatus().equals(Audiobook.listeningStatus.COMPLETED)) {
+                i++;
+            }
+        }
+
+        return i;
+    }
+
+    public int getNumberNotListening() {
+        int i = 0;
+        for (Audiobook item: collection) {
+            if(item.getStatus().equals(Audiobook.listeningStatus.NOT_STARTED)) {
                 i++;
             }
         }
