@@ -15,6 +15,10 @@ public class Library {
     }
 
     public ArrayList<Audiobook> getAudiobook(String name) {
+        if  (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("name is null or empty");
+        }
+
         ArrayList<Audiobook> listOfMatchingNames = new ArrayList<>();
 
         for (Audiobook item: collection) {
@@ -27,6 +31,10 @@ public class Library {
     }
 
     public ArrayList<Audiobook> searchByAuthor(String author) {
+        if (author == null || author.isBlank()) {
+            throw new IllegalArgumentException("author is null or empty");
+        }
+
         ArrayList<Audiobook> listOfMatchingAuthor = new ArrayList<>();
 
         for (Audiobook item: collection) {
@@ -39,6 +47,10 @@ public class Library {
     }
 
     public ArrayList<Audiobook> searchByGenre(Audiobook.genre genre) {
+        if  (genre == null) {
+            throw new IllegalArgumentException("genre is null or empty");
+        }
+
         ArrayList<Audiobook> listOfMatchingGenre = new ArrayList<>();
 
         for (Audiobook item: collection) {
@@ -51,13 +63,12 @@ public class Library {
     }
 
     public void removeAudiobook(String name) {
-        ArrayList<Audiobook> listOfMatchingNames = new ArrayList<>();
-
-        for (Audiobook item: collection) {
-            if (item.getTitle().equalsIgnoreCase(name)) {
-                listOfMatchingNames.add(item);
-            }
+        if  (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("name is null or empty");
         }
+
+        ArrayList<Audiobook> listOfMatchingNames = new ArrayList<>();
+        listOfMatchingNames = getAudiobook(name);
 
         if (listOfMatchingNames.size() > 1) {
             System.out.println("There is more than one item with the same title," +
@@ -93,7 +104,7 @@ public class Library {
                 }
 
             } while (!removed);
-        } else {
+        } else if (listOfMatchingNames.size() == 1) {
             Iterator<Audiobook> iterator = collection.iterator();
 
             while (iterator.hasNext()) {
@@ -103,6 +114,8 @@ public class Library {
                     iterator.remove();
                 }
             }
+        } else {
+            System.out.println("invalid input");
         }
     }
 

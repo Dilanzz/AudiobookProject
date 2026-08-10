@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public  class Audiobook {
@@ -24,8 +25,11 @@ public  class Audiobook {
     private genre category;
     private listeningStatus status;
 
-    public Audiobook(String title, String author, double duration, genre category) {
-        this.title = title;
+    public Audiobook(String title, String author, double duration, genre category) throws IllegalArgumentException {
+        if (title == null || title.isEmpty() || author == null || author.isEmpty()
+                || duration <= 0 || category == null) {
+            throw new IllegalArgumentException("title is null or empty");
+        }
         this.author = author;
         this.duration = duration;
         this.category = category;
