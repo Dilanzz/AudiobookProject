@@ -10,14 +10,44 @@ public class Library {
         collection.add(audiobook);
     }
 
-    public Audiobook getAudiobook(String name) {
+    public ArrayList<Audiobook> getCollection() {
+        return collection;
+    }
+
+    public ArrayList<Audiobook> getAudiobook(String name) {
+        ArrayList<Audiobook> listOfMatchingNames = new ArrayList<>();
+
         for (Audiobook item: collection) {
             if (item.getTitle().equalsIgnoreCase(name)) {
-                return item;
+                listOfMatchingNames.add(item);
             }
         }
-        System.out.println("Item not found");
-        return null;
+
+        return listOfMatchingNames;
+    }
+
+    public ArrayList<Audiobook> searchByAuthor(String author) {
+        ArrayList<Audiobook> listOfMatchingAuthor = new ArrayList<>();
+
+        for (Audiobook item: collection) {
+            if  (item.getAuthor().equalsIgnoreCase(author)) {
+                listOfMatchingAuthor.add(item);
+            }
+        }
+
+        return listOfMatchingAuthor;
+    }
+
+    public ArrayList<Audiobook> searchByGenre(Audiobook.genre genre) {
+        ArrayList<Audiobook> listOfMatchingGenre = new ArrayList<>();
+
+        for (Audiobook item: collection) {
+            if (item.getGenre().equals(genre)) {
+                listOfMatchingGenre.add(item);
+            }
+        }
+
+        return listOfMatchingGenre;
     }
 
     public void removeAudiobook(String name) {
@@ -62,9 +92,17 @@ public class Library {
                     System.out.println("Please enter one of the IDs listed");
                 }
 
-                scanner.next();
-
             } while (!removed);
+        } else {
+            Iterator<Audiobook> iterator = collection.iterator();
+
+            while (iterator.hasNext()) {
+                Audiobook item = iterator.next();
+
+                if (item.getTitle().equalsIgnoreCase(name)) {
+                    iterator.remove();
+                }
+            }
         }
     }
 
@@ -82,5 +120,13 @@ public class Library {
         }
 
         return i;
+    }
+
+    public void UpdateListeningStatus(Audiobook audiobook) {
+        if (audiobook.getStatus().equals(Audiobook.listeningStatus.LISTENING)) {
+            audiobook.complete();
+        } else if (audiobook.getStatus().equals(Audiobook.listeningStatus.NOT_STARTED)) {
+            audiobook.play();
+        }
     }
 }

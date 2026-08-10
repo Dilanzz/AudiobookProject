@@ -54,6 +54,10 @@ public  class Audiobook {
         return status;
     }
 
+    public genre getGenre() {
+        return category;
+    }
+
     public void play() {
         this.status = listeningStatus.LISTENING;
     }
