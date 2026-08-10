@@ -24,6 +24,6 @@ public class Main {
 
         lib.removeAudiobook("The_Life");
 
-
+        System.out.println("Number of audiobooks: " + lib.getNumberOfAudiobooks());
     }
 }

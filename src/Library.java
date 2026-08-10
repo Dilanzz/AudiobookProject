@@ -40,9 +40,8 @@ public class Library {
             do {
                 Scanner scanner = new Scanner(System.in);
 
-                int input = scanner.nextInt();
-
-                if (scanner.hasNextInt()) {
+                if (scanner.hasNext()) {
+                    int input = scanner.nextInt();
                     for (Audiobook item : listOfMatchingNames) {
                         if (item.getID() == input) {
                             collection.remove(item);
