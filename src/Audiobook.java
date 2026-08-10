@@ -30,6 +30,7 @@ public  class Audiobook {
                 || duration <= 0 || category == null) {
             throw new IllegalArgumentException("title is null or empty");
         }
+        this.title = title;
         this.author = author;
         this.duration = duration;
         this.category = category;
